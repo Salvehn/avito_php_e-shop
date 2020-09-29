@@ -57,7 +57,7 @@ class Product
                 'id' => 1,
                 'name' => 'PHP',
                 'price' => 15300,
-                'desc' => 'poop'
+                'desc' => 'old one'
             ],
             [
                 'id' => 2,
