@@ -101,6 +101,13 @@ class User
                 'password' => '$2y$10$vQvuFc6vQQyon0IawbmUN.3cPBXmuaZYsVww5csFRLvLCLPTiYwMa', // testss
                 'role' => $test
             ],
+            [
+                'id' => 5,
+                'name' => 'student',
+                'login' => 'student',
+                'password' => '$2y$10$./5CWjqoeVl0t/dBytA3GuJA0iY1YT0zmf5sqkZ8PHWjvG3M4.k/C', // student (password_hash()  bcrypt gen)
+                'role' => $user
+            ]
         ];
 
         if (!count($search)) {

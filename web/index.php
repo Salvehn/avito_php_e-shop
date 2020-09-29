@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Request;
 

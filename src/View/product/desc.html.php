@@ -7,8 +7,8 @@ $body = function () use ($productList, $path) {
         <tr><td colspan="3" align="center">Наши курсы</td></tr>
         <tr>
             <td colspan="3" align="left">Сортировать по:
-                <a href="<?= $path('product_list') ?>?sort=price">Цене</a>
-                <a href="<?= $path('product_list') ?>?sort=name">Названию</a>
+                <a href="<?= $path('product_desc_list') ?>?sort=price">Цене</a>
+                <a href="<?= $path('product_desc_list') ?>?sort=name">Названию</a>
             </td>
         </tr>
 <?php
@@ -19,7 +19,7 @@ $body = function () use ($productList, $path) {
                     <?= ($position+1)?>)
                     <a href="<?= $path('product_info', ['id' => $product->getId()]) ?>"><?= $product->getName() ?></a>
                     <br /><br />
-                    <?= $product->getPrice() ?> руб.
+                    Описание: <?= $product->getDesc() ?>
                 </td>
 <?php
                 echo($position + 1) % 3 ? '' : '</tr>';
@@ -33,7 +33,7 @@ $body = function () use ($productList, $path) {
 $renderLayout(
     'main_template.html.php',
     [
-        'title' => 'Курсы',
+        'title' => 'Описание курсов',
         'body' => $body,
     ]
 );
