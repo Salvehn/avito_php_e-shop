@@ -16,7 +16,6 @@ $body = function () use ($productList, $path) {
     foreach ($productList as $key => $product) {
         echo $position % 3 ? '' : '<tr>'; ?>
                 <td style="text-align: center">
-                    <?= ($position+1)?>)
                     <a href="<?= $path('product_info', ['id' => $product->getId()]) ?>"><?= $product->getName() ?></a>
                     <br /><br />
                     Описание: <?= $product->getDesc() ?>
@@ -25,7 +24,7 @@ $body = function () use ($productList, $path) {
                 echo($position + 1) % 3 ? '' : '</tr>';
         ++$position;
     }
-    echo $position % 3 ? str_repeat('<td></td>', 3 - $position) . '</tr>' : ''; ?>
+    echo $position % 3 ? str_repeat('<td></td>', 3 - $position%3) . '</tr>' : ''; ?>
     </table>
 <?php
 };
