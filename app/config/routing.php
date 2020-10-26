@@ -3,6 +3,7 @@
 use Controller\MainController;
 use Controller\OrderController;
 use Controller\ProductController;
+use Controller\UserController;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 
@@ -16,6 +17,10 @@ $routes->add(
 $routes->add(
     'product_list',
     new Route('/product/list', ['_controller' => [ProductController::class, 'listAction']])
+);
+$routes->add(
+    'user_list',
+    new Route('/user/list', ['_controller' => [UserController::class, 'listAction']])
 );
 $routes->add(
     'product_desc_list',

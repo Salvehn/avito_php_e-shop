@@ -41,6 +41,34 @@ class User
     }
 
     /**
+     * Получаем cписок
+     *
+     *  @return array
+     */
+    // public function fetchAll(): ?Entity\User
+    // {
+    //     $gen = function($u)
+    //     {
+    //         return $this->createUser($u);
+    //     }
+    //     $result = array_map($gen,$this->getDataFromSource())
+    //     echo  $result
+    //     return $result
+    //
+    //
+    // }
+    public function fetchAll(): array
+    {
+        $userList = [];
+        foreach ($this->getDataFromSource() as $item) {
+            $output = $this->createUser($item, true);
+
+            $userList[] = $output;
+        }
+
+        return $userList;
+    }
+    /**
      * Фабрика по созданию сущности пользователя
      *
      * @param array $user
