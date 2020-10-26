@@ -45,18 +45,18 @@ class User
      *
      *  @return array
      */
-    // public function fetchAll(): ?Entity\User
+     
+    //Вариант с array_map почему-то не работает
+
+    // public function fetchAll(): array
     // {
-    //     $gen = function($u)
-    //     {
-    //         return $this->createUser($u);
-    //     }
-    //     $result = array_map($gen,$this->getDataFromSource())
-    //     echo  $result
-    //     return $result
     //
-    //
+    //     $userList = array_map(array('User','createUser'),$this->getDataFromSource())
+    //     return $userList
     // }
+
+
+
     public function fetchAll(): array
     {
         $userList = [];
@@ -69,6 +69,7 @@ class User
         return $userList;
     }
     /**
+
      * Фабрика по созданию сущности пользователя
      *
      * @param array $user
