@@ -21,6 +21,11 @@ class User
      */
     private $login;
 
+
+    /**
+     * @var string
+     */
+    private $birthday;
     /**
      * @var string
      */
@@ -38,13 +43,15 @@ class User
      * @param string $password
      * @param Role $role
      */
-    public function __construct(int $id, string $name, string $login, string $password, Role $role)
+    public function __construct(int $id, string $name, string $login, string $password, Role $role, int $birthday)
     {
         $this->id = $id;
         $this->name = $name;
         $this->login = $login;
         $this->passwordHash = $password;
         $this->role = $role;
+        $this->birthday = $birthday;
+
     }
 
     /**
@@ -79,6 +86,21 @@ class User
         return $this->passwordHash;
     }
 
+
+    /**
+     * @return string
+     */
+    public function getBirthday(): string
+    {
+        return date('d.m.Y',$this->birthday);
+    }
+    /**
+     * @return int
+     */
+    public function getBirthdayRaw(): int
+    {
+        return $this->birthday;
+    }
     /**
      * @return Role
      */

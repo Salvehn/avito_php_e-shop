@@ -4,7 +4,7 @@
 $body = function () use ($user, $path) {
     ?>
     <div>
-        Пользователь: <?= $user->getName() ?> 
+        Пользователь: <?= $user->getName() ?> (<?= $user->getBirthday() ?>)
 
 
     </div>
