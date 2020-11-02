@@ -14,6 +14,7 @@
                     <tr valign="top">
                         <td width="150">
                             <table cellspacing="10">
+                                <tr><td><a href="<?= $path('user_profile') ?>">Личный кабинет</a></td></tr>
                                 <tr><td><a href="<?= $path('index') ?>">Главная</a></td></tr>
                                 <tr><td><a href="<?= $path('product_list') ?>">Товары</a></td></tr>
                                 <tr><td><a href="<?= $path('user_list') ?>">Пользователи</a></td></tr>

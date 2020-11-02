@@ -57,6 +57,25 @@ class UserController
             return $this->render('error401.html.php', []);
         }
     }
+
+
+    /**
+     * Список всех продуктов
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function profileAction(Request $request): Response
+    {
+        $isAllowed = (new Security($request->getSession()))->isAdmin();
+        if ($isAllowed) {
+            $user = (new Security($request->getSession()))->getUser();
+            return $this->render('user/profile.html.php', ['user' => $user]);
+        }else{
+            return $this->render('error401.html.php', []);
+        }
+    }
     /**
      * Выходим из системы
      *

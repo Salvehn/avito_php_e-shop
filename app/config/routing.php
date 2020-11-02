@@ -23,6 +23,10 @@ $routes->add(
     new Route('/user/list', ['_controller' => [UserController::class, 'listAction']])
 );
 $routes->add(
+    'user_profile',
+    new Route('/user/profile', ['_controller' => [UserController::class, 'profileAction']])
+);
+$routes->add(
     'product_desc_list',
     new Route('/product/desclist', ['_controller' => [ProductController::class, 'listDescAction']])
 );
