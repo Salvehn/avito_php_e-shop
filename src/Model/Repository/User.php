@@ -115,7 +115,7 @@ class User
                 'login' => 'root',
                 'password' => '$2y$10$GnZbayyccTIDIT5nceez7u7z1u6K.znlEf9Jb19CLGK0NGbaorw8W', // 1234
                 'role' => $admin,
-                'birthday' => '10.09.1976'
+                'birthday' => '09.11.1976'
             ],
             [
                 'id' => 2,

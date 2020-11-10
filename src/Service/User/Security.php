@@ -79,7 +79,14 @@ class Security implements ISecurity
 
         // Здесь могут выполняться другие действия связанные с разлогиниванием пользователя
     }
-
+    public function getSessionKey($key)
+    {
+        return $this->session->get($key);
+    }
+    public function setSessionKey($key,$value)
+    {
+        return $this->session->set($key,$value);
+    }
     /**
      * Фабричный метод для репозитория User
      *

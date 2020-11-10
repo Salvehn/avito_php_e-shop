@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Model\Entity;
 
-class Product
+class Discount
 {
     /**
      * @var int
@@ -19,24 +19,20 @@ class Product
     /**
      * @var float
      */
-    private $price;
+    private $discount;
 
-    /**
-     * @var string
-     */
-    private $desc;
     /**
      * @param int $id
      * @param string $name
      * @param float $price
      * @param string $desc
      */
-    public function __construct(int $id, string $name, float $price, string $desc = '')
+    public function __construct(int $id, string $name, float $discount)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->price = $price;
-        $this->desc = $desc;
+        $this->discount = $discount;
+
 
     }
 
@@ -59,19 +55,12 @@ class Product
     /**
      * @return float
      */
-    public function getPrice(): float
+    public function getDiscount(): float
     {
-        return $this->price;
+        return $this->discount;
     }
 
-    /**
-     * @return string
-     */
 
-    public function getDesc(): string
-    {
-        return $this->desc;
-    }
     /**
      * @return array
      */
@@ -80,8 +69,8 @@ class Product
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'price' => $this->price,
-            'desc' => $this->desc,
+            'discount' => $this->discount,
+
 
         ];
     }

@@ -7,9 +7,15 @@ namespace Controller;
 use Framework\Render;
 use Service\Order\Basket;
 use Service\User\Security;
+use Model\Entity\Discount;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+function debug_log($object = null, $label = null)
+{
+    $message = json_encode($object, JSON_PRETTY_PRINT);
+    $label = "Debug" . ($label ? " ($label): " : ': ');
+    echo "<script>console.log(\"$label\", $message);</script>";
+}
 class OrderController
 {
     use Render;
@@ -20,16 +26,23 @@ class OrderController
      * @param Request $request
      * @return Response
      */
+
     public function infoAction(Request $request): Response
     {
         if ($request->isMethod(Request::METHOD_POST)) {
             return $this->redirect('order_checkout');
         }
-
-        $productList = (new Basket($request->getSession()))->getProductsInfo();
         $isLogged = (new Security($request->getSession()))->isLogged();
+        $productList = (new Basket($request->getSession()))->getProductsInfo();
+        list('finalPrice'=>$finalPrice) = ((new Basket($request->getSession()))->getTotalPrice($productList));
 
-        return $this->render('order/info.html.php', ['productList' => $productList, 'isLogged' => $isLogged]);
+        $lastOrder = null;
+        if($isLogged){
+            debug_log($lastOrder,'lastOrder1');
+            $lastOrder = (new Basket($request->getSession()))->getLastOrder();
+            debug_log($lastOrder,'lastOrder2');
+        }
+        return $this->render('order/info.html.php', ['finalList' => $productList, 'isLogged' => $isLogged,'finalPrice'=>$finalPrice,'lastOrder'=>$lastOrder]);
     }
 
     /**
