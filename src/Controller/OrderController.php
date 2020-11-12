@@ -10,12 +10,7 @@ use Service\User\Security;
 use Model\Entity\Discount;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-function debug_log($object = null, $label = null)
-{
-    $message = json_encode($object, JSON_PRETTY_PRINT);
-    $label = "Debug" . ($label ? " ($label): " : ': ');
-    echo "<script>console.log(\"$label\", $message);</script>";
-}
+
 class OrderController
 {
     use Render;
@@ -38,9 +33,9 @@ class OrderController
 
         $lastOrder = null;
         if($isLogged){
-            debug_log($lastOrder,'lastOrder1');
+    
             $lastOrder = (new Basket($request->getSession()))->getLastOrder();
-            debug_log($lastOrder,'lastOrder2');
+
         }
         return $this->render('order/info.html.php', ['finalList' => $productList, 'isLogged' => $isLogged,'finalPrice'=>$finalPrice,'lastOrder'=>$lastOrder]);
     }

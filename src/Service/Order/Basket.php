@@ -20,12 +20,7 @@ use Service\Discount\TotalDiscount;
 use Service\User\ISecurity;
 use Service\User\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-function debug_log($object = null, $label = null)
-{
-    $message = json_encode($object, JSON_PRETTY_PRINT);
-    $label = "Debug" . ($label ? " ($label): " : ': ');
-    echo "<script>console.log(\"$label\", $message);</script>";
-}
+
 class Basket
 {
     /**
@@ -120,7 +115,7 @@ class Basket
 
         if($isLogged){
             $user = (new Security($this->session))->getUser();
-            //debug_log($user,'USER');
+
 
             $finalPrice = $finalPrice*(new BirthdayDiscount($user))->getDiscount();
         }
@@ -169,11 +164,7 @@ class Basket
     ) {
 
         $products = $this->getProductsInfo();
-        debug_log($finalPrice,'finalPrice');
-        //не работает
-        //$billing->pay($finalPrice);
 
-        debug_log($discount,'discount');
         $user = $security->getUser();
         $communication->process($user, 'checkout_template');
         $this->setLastOrder($finalPrice);

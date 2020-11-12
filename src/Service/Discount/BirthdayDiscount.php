@@ -5,12 +5,7 @@ declare(strict_types = 1);
 namespace Service\Discount;
 
 use Model;
-function debug_log($object = null, $label = null)
-{
-    $message = json_encode($object, JSON_PRETTY_PRINT);
-    $label = "Debug" . ($label ? " ($label): " : ': ');
-    echo "<script>console.log(\"$label\", $message);</script>";
-}
+
 class BirthdayDiscount implements IDiscount
 {
     public const DAYS_AMOUNT = 5;
@@ -34,8 +29,7 @@ class BirthdayDiscount implements IDiscount
      */
     public function getDiscount(): float
     {
-        // Получаем индивидуальную скидку Birthday пользователя
-        // $discount = $this->find($this->user)->discount();
+
         $birthday = $this->user->getBirthday();
 
         $discount = $this->getDiscountBirthday(strtotime($birthday));
@@ -44,7 +38,7 @@ class BirthdayDiscount implements IDiscount
     }
     public function getDiscountBirthday($birthday): float
    {
-       #$birthday = '20.11.2010';
+    
 
        $birthdayString = date('d.m.Y', $birthday);
        $beforeDiscount = date('d.m.Y', strtotime('today 00:00:00 +' . self::DAYS_AMOUNT . ' days'));
