@@ -16,10 +16,8 @@ class TotalDiscount implements IDiscount
      */
     private $totalPrice;
 
-    /**
-     * @param float $orderPrice
-     */
-    public function __construct(?float $totaPrice)
+
+    public function __construct(float $totalPrice)
     {
         $this->totalPrice = $totalPrice;
     }
@@ -29,8 +27,9 @@ class TotalDiscount implements IDiscount
      */
     public function getDiscount(): float
     {
-        if ($this->totalPrice >= self::TOTAL_ORDER){
-            $discount = self::DISCOUNT_AMOUNT;
+
+        if ($this->totalPrice >= floatval(self::TOTAL_ORDER)){
+            $discount = self::DISCOUNT_MULTIPLIER;
         }
         else
             $discount = 1;

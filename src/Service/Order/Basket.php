@@ -122,6 +122,7 @@ class Basket
 
         $finalPrice = $finalPrice*(new TotalDiscount($finalPrice))->getDiscount();
         $discount = $price - $finalPrice;
+
         return ['price'=>$price,'discount'=>$discount,'finalPrice'=>$finalPrice];
     }
 
@@ -133,17 +134,21 @@ class Basket
     public function checkout()
     {
         // Здесь должна быть некоторая логика выбора способа платежа
-        $billing = new Card();
-
-        // Здесь должна быть некоторая логика получения информации о скидки пользователя
-
-
-        // Здесь должна быть некоторая логика получения способа уведомления пользователя о покупке
-        $communication = new Email();
-
-        $security = new Security($this->session);
         list('discount' => $discount, 'finalPrice' => $finalPrice) = $this->getTotalPrice($this->getProductsInfo());
-        return $this->checkoutProcess($discount, $finalPrice, $security, $communication);
+
+
+
+        $basketBuilder = new BasketBuilder();
+        $basketBuilder->setFinalPrice($finalPrice)
+            ->setDiscount($discount)
+            ->setSecurity(new Security($this->session))
+            ->setBilling(new Card())
+            ->setCommunication(new Email());
+
+        $checkoutProcess = $basketBuilder->build();
+    
+        return $checkoutProcess->checkoutProcess($this->getProductsInfo());
+
     }
 
     /**
@@ -155,21 +160,21 @@ class Basket
      * @param ICommunication $communication
      * @return void
      */
-    public function checkoutProcess(
-
-        float $discount,
-        float $finalPrice,
-        ISecurity $security,
-        ICommunication $communication
-    ) {
-
-        $products = $this->getProductsInfo();
-
-        $user = $security->getUser();
-        $communication->process($user, 'checkout_template');
-        $this->setLastOrder($finalPrice);
-        return ['products'=>$products,'discount'=>$discount,'finalPrice'=>$finalPrice];
-    }
+    // public function checkoutProcess(
+    //
+    //     float $discount,
+    //     float $finalPrice,
+    //     ISecurity $security,
+    //     ICommunication $communication
+    // ) {
+    //
+    //     $products = $this->getProductsInfo();
+    //
+    //     $user = $security->getUser();
+    //     $communication->process($user, 'checkout_template');
+    //     $this->setLastOrder($finalPrice);
+    //     return ['products'=>$products,'discount'=>$discount,'finalPrice'=>$finalPrice];
+    // }
 
     /**
      * Фабричный метод для репозитория Product

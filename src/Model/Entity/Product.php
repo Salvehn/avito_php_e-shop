@@ -39,7 +39,18 @@ class Product
         $this->desc = $desc;
 
     }
-
+    public function setId(int $id){
+        $this->id=$id;
+    }
+    public function setName(string $name){
+        $this->name=$name;
+    }
+    public function setPrice(int $price){
+        $this->price=$price;
+    }
+    public function setDesc(string $desc){
+        $this->desc=$desc;
+    }
     /**
      * @return int
      */
