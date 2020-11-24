@@ -20,15 +20,18 @@ class SocialNetwork
 
         switch ($socialNetwork) {
             case ISocialNetwork::SOCIAL_NETWORK_VK:
-                //$socialNetworkAdapter = new VKAdapter();
+                $vk = new VK();
+                $socialNetworkAdapter = new VKAdapter($vk);
                 break;
 
             case ISocialNetwork::SOCIAL_NETWORK_FACEBOOK:
-                //$socialNetworkAdapter = new FacebookAdapter();
+                $fb = new FB();
+                $socialNetworkAdapter = new FBAdapter($fb);
                 break;
 
             default:
-                //$socialNetworkAdapter = new VKAdapter();
+                $vk = new VK();
+                $socialNetworkAdapter = new VKAdapter($vk);
         }
 
         $this->sendMessage($socialNetworkAdapter, $courseName);

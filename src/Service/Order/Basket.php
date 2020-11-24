@@ -131,25 +131,25 @@ class Basket
      *
      * @return void
      */
-    public function checkout()
-    {
-        // Здесь должна быть некоторая логика выбора способа платежа
-        list('discount' => $discount, 'finalPrice' => $finalPrice) = $this->getTotalPrice($this->getProductsInfo());
-
-
-
-        $basketBuilder = new BasketBuilder();
-        $basketBuilder->setFinalPrice($finalPrice)
-            ->setDiscount($discount)
-            ->setSecurity(new Security($this->session))
-            ->setBilling(new Card())
-            ->setCommunication(new Email());
-
-        $checkoutProcess = $basketBuilder->build();
-    
-        return $checkoutProcess->checkoutProcess($this->getProductsInfo());
-
-    }
+    // public function checkout()
+    // {
+    //     // Здесь должна быть некоторая логика выбора способа платежа
+    //     list('discount' => $discount, 'finalPrice' => $finalPrice) = $this->getTotalPrice($this->getProductsInfo());
+    //
+    //
+    //
+    //     $basketBuilder = new BasketBuilder();
+    //     $basketBuilder->setFinalPrice($finalPrice)
+    //         ->setDiscount($discount)
+    //         ->setSecurity(new Security($this->session))
+    //         ->setBilling(new Card())
+    //         ->setCommunication(new Email());
+    //
+    //     $checkoutProcess = $basketBuilder->build();
+    //
+    //     return $checkoutProcess->checkoutProcess($this->getProductsInfo());
+    //
+    // }
 
     /**
      * Проведение всех этапов заказа

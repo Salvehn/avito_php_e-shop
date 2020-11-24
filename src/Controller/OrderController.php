@@ -6,6 +6,7 @@ namespace Controller;
 
 use Framework\Render;
 use Service\Order\Basket;
+use Service\Order\CheckoutFacade;
 use Service\User\Security;
 use Model\Entity\Discount;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class OrderController
 
         $lastOrder = null;
         if($isLogged){
-    
+
             $lastOrder = (new Basket($request->getSession()))->getLastOrder();
 
         }
@@ -53,7 +54,7 @@ class OrderController
             return $this->redirect('user_authentication');
         }
 
-        (new Basket($request->getSession()))->checkout();
+        (new CheckoutFacade($request->getSession()))->checkout();
 
         return $this->render('order/checkout.html.php');
     }
