@@ -1,5 +1,7 @@
 1. ## Найти в проекте Front Controller и расписать классы, которые с ним взаимодействуют
 
+   `web/index.php`
+
 * ContainerBuilder
 * Request 
 * Registry 
